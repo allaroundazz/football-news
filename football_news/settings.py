@@ -31,6 +31,9 @@ PRODUCTION = os.getenv('PRODUCTION', 'False').lower() == 'true'
 DEBUG = True
 
 ALLOWED_HOSTS = ["localhost", "127.0.0.1", "diaz-prayodhi-footballnews.pbp.cs.ui.ac.id"]
+CSRF_TRUSTED_ORIGINS = [
+    "https://diaz-prayodhi-footballnews.pbp.cs.ui.ac.id"
+]
 
 
 # Application definitions
@@ -57,20 +60,23 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'football_news.urls'
 
+
 TEMPLATES = [
-    {
+{
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
-                'django.template.context_processors.request',
-                'django.contrib.auth.context_processors.auth',
-                'django.contrib.messages.context_processors.messages',
+                'django.template.context_processors.debug',
+                'django.template.context_processors.request',   # untuk admin
+                'django.contrib.auth.context_processors.auth',  # untuk login, user
+                'django.contrib.messages.context_processors.messages',  # untuk messages
             ],
         },
     },
 ]
+
 
 WSGI_APPLICATION = 'football_news.wsgi.application'
 
